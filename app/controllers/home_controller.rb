@@ -3,10 +3,7 @@ class HomeController < ApplicationController
   end
 
   def search
-    data = [
-      { text: Procedure.order('RANDOM()').first.title, url: '/example' },
-      { text: Provider.order('RANDOM()').first.full_name, url: '/example' }
-    ]
+    data = Procedure.search(params[:query])
     render json: { data: data, query: params[:query] }
   end
 end
